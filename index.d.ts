@@ -2,7 +2,9 @@
 // Project: https://golden-layout.com/
 
 declare module 'golden-layout' {
-    class GoldenLayout implements GoldenLayout.EventEmitter {
+  import 'zepto';
+
+  class GoldenLayout implements GoldenLayout.EventEmitter {
         /**
          * The topmost item in the layout item tree. In browser terms: Think of the GoldenLayout instance as window
          * object and of goldenLayout.root as the document.
@@ -12,7 +14,7 @@ declare module 'golden-layout' {
         /**
          * A reference to the (jQuery) DOM element containing the layout
          */
-        container: JQuery;
+        container: ZeptoCollection;
 
         /**
          * True once the layout item tree has been created and the initialised event has been fired
@@ -61,11 +63,11 @@ declare module 'golden-layout' {
          * @param config A GoldenLayout configuration object
          * @param container The DOM element the layout will be initialised in. Default: document.body
          */
-        constructor(configuration: GoldenLayout.Config, container?: Element | HTMLElement | JQuery);
+        constructor(configuration: GoldenLayout.Config, container?: Element | HTMLElement | ZeptoCollection);
 
         /*
-         * @param name 	The name of the component, as referred to by componentName in the component configuration.
-         * @param component 	A constructor or factory function. Will be invoked with new and two arguments, a
+         * @param name  The name of the component, as referred to by componentName in the component configuration.
+         * @param component  A constructor or factory function. Will be invoked with new and two arguments, a
          *                      containerobject and a component state
          */
         registerComponent(name: String, component: any): void;
@@ -135,7 +137,7 @@ declare module 'golden-layout' {
          * @param element The DOM element that will be turned into a dragSource
          * @param itemConfiguration An item configuration (can be an entire tree of items)
          */
-        createDragSource(element: HTMLElement | JQuery, itemConfiguration: GoldenLayout.ItemConfigType): void;
+        createDragSource(element: HTMLElement | ZeptoCollection, itemConfiguration: GoldenLayout.ItemConfigType): void;
 
         /**
          * If settings.selectionEnabled is set to true, this allows to select items programmatically.
@@ -191,7 +193,7 @@ declare module 'golden-layout' {
         off(eventName: string, callback?: Function, context?: any): void;
     }
 
-    namespace GoldenLayout {
+  namespace GoldenLayout {
 
         export type ItemConfigType = ItemConfig | ComponentConfig | ReactComponentConfig;
 
@@ -665,7 +667,7 @@ declare module 'golden-layout' {
             /**
              * Returns the container's inner element as a jQuery element
              */
-            getElement(): JQuery;
+            getElement(): ZeptoCollection;
 
             /**
              * hides the container or returns false if hiding it is not possible
@@ -763,17 +765,17 @@ declare module 'golden-layout' {
             /**
              * The outer (jQuery) DOM element of this Header
              */
-            element: JQuery;
+            element: ZeptoCollection;
 
             /**
              * The (jQuery) DOM element containing the tabs
              */
-            tabsContainer: JQuery;
+            tabsContainer: ZeptoCollection;
 
             /**
              * The (jQuery) DOM element containing the close, maximise and popout button
              */
-            controlsContainer: JQuery;
+            controlsContainer: ZeptoCollection;
 
             /**
              * Hides the currently selected contentItem, shows the specified one and highlights its tab.
@@ -815,17 +817,17 @@ declare module 'golden-layout' {
             /**
              * The tabs outer (jQuery) DOM element
              */
-            element: JQuery;
+            element: ZeptoCollection;
 
             /**
              * The (jQuery) DOM element containing the title
              */
-            titleElement: JQuery;
+            titleElement: ZeptoCollection;
 
             /**
              * The (jQuery) DOM element that closes the tab
              */
-            closeElement: JQuery;
+            closeElement: ZeptoCollection;
 
             /**
              * Sets the tab's title. Does not affect the contentItem's title!
@@ -877,5 +879,5 @@ declare module 'golden-layout' {
         }
     }
 
-    export = GoldenLayout;
+  export = GoldenLayout;
 }

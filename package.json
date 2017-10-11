@@ -4,6 +4,7 @@
   "author": "deepstreamHub GmbH",
   "license": "MIT",
   "devDependencies": {
+    "@types/zepto": "^1.0.29",
     "grunt": "~0.4.2",
     "grunt-contrib-less": "^1.4.1",
     "grunt-contrib-watch": "0.5.3",
@@ -24,25 +25,22 @@
     "karma-ie-launcher": "~0.1.5",
     "karma-jasmine": "~0.1.5",
     "karma-phantomjs-launcher": "^1.0.2",
-    "tslint": "^3.7.3",
-    "tslint-config-typings": "^0.2.2",
-    "typescript": "^1.8.9",
-    "typings": "^0.7.12",
+    "tslint": "^5.7.0",
+    "typescript": "^2.5.3",
     "walker": "1.0.6"
   },
   "description": "A multi-screen javascript Layout manager \r https://golden-layout.com",
   "main": "./dist/goldenlayout.js",
-  "typings": "./index.d.ts",
+  "types": "./index.d.ts",
   "directories": {
     "test": "test"
   },
   "dependencies": {
-    "jquery": "*"
+    "zepto": "*"
   },
   "scripts": {
     "test": "grunt test && npm run tslint",
-    "tslint": "tslint \"**/*.ts\" -e \"node_modules/**\" -e \"typings/**\"",
-    "prepublish": "typings install",
+    "tslint": "tslint --fix \"**/*.ts\" -e \"node_modules/**\"",
     "publish": "npm -s run tslint"
   },
   "repository": {
